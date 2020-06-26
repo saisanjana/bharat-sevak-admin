@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "144377990596",
+    "firebase_url": "https://bharat-sevak-app.firebaseio.com",
+    "project_id": "bharat-sevak-app",
+    "storage_bucket": "bharat-sevak-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144377990596:android:157381eb2d51d93a796891",
+        "android_client_info": {
+          "package_name": "com.example.bharatsevakadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144377990596-cu6tqnuo16le1ikm2sfbi6ogpkm8tsug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL5CD37AOFpTSyCtE8Pt9BN2bB4JRBue4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144377990596-cu6tqnuo16le1ikm2sfbi6ogpkm8tsug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144377990596:android:3a6ef01754fff7f2796891",
+        "android_client_info": {
+          "package_name": "com.example.bharatsevakuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144377990596-cu6tqnuo16le1ikm2sfbi6ogpkm8tsug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL5CD37AOFpTSyCtE8Pt9BN2bB4JRBue4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144377990596-cu6tqnuo16le1ikm2sfbi6ogpkm8tsug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
