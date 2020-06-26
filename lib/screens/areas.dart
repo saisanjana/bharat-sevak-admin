@@ -8,8 +8,12 @@ class Area extends StatefulWidget {
 }
 
 class _AreaState extends State<Area> {
-  void addArea(BuildContext ctx) {
+  void addArea(BuildContext ctx,{String givenname=""}) {
     TextEditingController name = TextEditingController();
+    givenname!=""?
+    Firestore.instance.collection('areas').document(givenname).setData({}).then((value) =>  
+              Navigator.of(context).pop() )
+    :
     showDialog(
       context: ctx,
       builder: (context) => AlertDialog(

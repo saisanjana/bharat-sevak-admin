@@ -1,6 +1,7 @@
 import './screens/services.dart';
 import 'package:flutter/material.dart';
 import './screens/addservice.dart';
+import './screens/servicedetails.dart';
 import './screens/nav_screen.dart';
 void main() {
   runApp(MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
        Services.routeName:(ctx)=>Services(),
        AddService.routeName:(ctx)=>AddService(),
+       Details.routeName:(ctx)=>Details(),
       },
     );
   }
