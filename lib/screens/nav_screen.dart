@@ -5,6 +5,7 @@ import './orders.dart';
 import './users.dart';
 
 class NavScreen extends StatefulWidget {
+  static const routeName ='abc';
   @override
   _NavScreenState createState() => _NavScreenState();
 }

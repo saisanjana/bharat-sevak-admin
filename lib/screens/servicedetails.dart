@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Details extends StatelessWidget {
-  var rupee = String.fromCharCode(8377);
+  static var rupee = String.fromCharCode(8377);
   static const routeName = 'details';
   @override
   Widget build(BuildContext context) {

@@ -83,6 +83,9 @@ class _AreaState extends State<Area> {
                 return Center(child: CircularProgressIndicator());
               }
               List<dynamic> _lst = streamsnapshots.data.documents as dynamic;
+              if(_lst.length==0){
+                return Center(child: Text("No arears added"),);
+              }
               return ListView.builder(
                 itemCount: streamsnapshots.data.documents.length,
                 itemBuilder: (ctx, i) {

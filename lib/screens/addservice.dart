@@ -22,7 +22,7 @@ class _AddServiceState extends State<AddService> {
 
   void addArea() {
     if (flag == 1) {
-      var ref = Firestore.instance
+       Firestore.instance
           .collection('areas')
           .document(areaname)
           .collection('products')
@@ -32,13 +32,14 @@ class _AddServiceState extends State<AddService> {
           'availability': availability.text,
           'description': description.text,
           'productName': name.text,
+          'stock': int.parse(stock.text),
         },
       ).then((value) {
         Navigator.of(context).pop();
       });
       //print(ref);
     } else {
-      var ref = Firestore.instance
+       Firestore.instance
           .collection('areas')
           .document(areaname)
           .collection('services')
@@ -48,6 +49,7 @@ class _AddServiceState extends State<AddService> {
           'availability': availability.text,
           'description': description.text,
           'serviceName': name.text,
+          
         },
       ).then((value) {
         Navigator.of(context).pop();
@@ -60,6 +62,7 @@ class _AddServiceState extends State<AddService> {
   TextEditingController description = TextEditingController();
   TextEditingController availability = TextEditingController();
   TextEditingController amount = TextEditingController();
+  TextEditingController stock = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final routeargs =
@@ -151,6 +154,14 @@ class _AddServiceState extends State<AddService> {
                   ),
                 ),
               ),
+              flag==1?Container(
+                child: TextField(
+                  controller: stock,
+                  decoration: InputDecoration(
+                    hintText: "Stock",
+                  ),
+                ),
+              ):Container(),
               Center(
                 child: RaisedButton.icon(
                   onPressed: addArea,

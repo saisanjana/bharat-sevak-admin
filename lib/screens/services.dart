@@ -1,7 +1,8 @@
-import './servicedetails.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './addservice.dart';
+import './editService.dart';
 
 class Services extends StatefulWidget {
   static const routeName = 'sevices';
@@ -23,7 +24,7 @@ class _ServicesState extends State<Services> {
           child: Icon(Icons.add),
           onPressed: () {
             Navigator.of(context).pushNamed(AddService.routeName,
-                arguments: {'areaname': areaname,'type':"service"});
+                arguments: {'areaname': areaname, 'type': "service"});
           },
         ),
         appBar: AppBar(
@@ -81,8 +82,14 @@ class _ServicesState extends State<Services> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .pushNamed(Details.routeName,arguments: {'details':_lst[i],'type':"product"});
+                                    //print(_lst[i].documentID);
+                                    Navigator.of(context).pushNamed(
+                                        EditService.routeName,
+                                        arguments: {
+                                          'details': _lst[i],
+                                          'type': "product",
+                                          'area': areaname
+                                        });
                                   },
                                   child: Card(
                                     color: i % 2 != 0
@@ -90,13 +97,71 @@ class _ServicesState extends State<Services> {
                                         : Colors.green[300],
                                     elevation: 3,
                                     child: Container(
-                                      height: 100,
-                                      child: Center(
-                                        child: Text(
+                                      child: ListTile(
+                                        title: Text(
                                           _lst[i]['productName'],
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
+                                        trailing: IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) => AlertDialog(
+                                                  title: Text("Confirm"),
+                                                  content: Text(
+                                                      "Are you sure you want to delete this product?"),
+                                                  actions: <Widget>[
+                                                    RaisedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text("No"),
+                                                    ),
+                                                    RaisedButton.icon(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                        Firestore.instance
+                                                            .collection('areas')
+                                                            .document(areaname)
+                                                            .collection(
+                                                                'products')
+                                                            .document(_lst[i]
+                                                                .documentID)
+                                                            .delete()
+                                                            .then((value) {
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (ctx) =>
+                                                                  AlertDialog(
+                                                                    title: Text(
+                                                                        "Successfully deleted!"),
+                                                                    content: Text(
+                                                                        "The product is deleted"),
+                                                                    actions: <
+                                                                        Widget>[
+                                                                      RaisedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child: Text(
+                                                                            "OKAY"),
+                                                                      ),
+                                                                    ],
+                                                                  ));
+                                                        });
+                                                      },
+                                                      icon: Icon(Icons.delete),
+                                                      label: Text("Yes"),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
                                       ),
                                     ),
                                   ),
@@ -148,8 +213,14 @@ class _ServicesState extends State<Services> {
                                   top: MediaQuery.of(context).size.width * 0.05,
                                 ),
                                 child: GestureDetector(
-                                  onTap: (){
-                                    Navigator.of(context).pushNamed(Details.routeName,arguments: {'details':_lst[i]});
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        EditService.routeName,
+                                        arguments: {
+                                          'details': _lst[i],
+                                          'type': "service",
+                                          'area': areaname
+                                        });
                                   },
                                   child: Card(
                                     color: i % 2 != 0
@@ -157,13 +228,71 @@ class _ServicesState extends State<Services> {
                                         : Colors.green[300],
                                     elevation: 3,
                                     child: Container(
-                                      height: 100,
-                                      child: Center(
-                                        child: Text(
+                                      child: ListTile(
+                                        title: Text(
                                           _lst[i]['serviceName'],
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
+                                        trailing: IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) => AlertDialog(
+                                                  title: Text("Confirm"),
+                                                  content: Text(
+                                                      "Are you sure you want to delete this Service?"),
+                                                  actions: <Widget>[
+                                                    RaisedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text("No"),
+                                                    ),
+                                                    RaisedButton.icon(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                        Firestore.instance
+                                                            .collection('areas')
+                                                            .document(areaname)
+                                                            .collection(
+                                                                'services')
+                                                            .document(_lst[i]
+                                                                .documentID)
+                                                            .delete()
+                                                            .then((value) {
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (ctx) =>
+                                                                  AlertDialog(
+                                                                    title: Text(
+                                                                        "Successfully deleted!"),
+                                                                    content: Text(
+                                                                        "The Service is deleted"),
+                                                                    actions: <
+                                                                        Widget>[
+                                                                      RaisedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child: Text(
+                                                                            "OKAY"),
+                                                                      ),
+                                                                    ],
+                                                                  ));
+                                                        });
+                                                      },
+                                                      icon: Icon(Icons.delete),
+                                                      label: Text("Yes"),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
                                       ),
                                     ),
                                   ),
@@ -178,7 +307,6 @@ class _ServicesState extends State<Services> {
                 ),
               ),
             ),
-            //Container(),
           ],
         ),
       ),
